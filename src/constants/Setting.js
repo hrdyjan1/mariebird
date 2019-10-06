@@ -2,7 +2,7 @@
 import Matter from 'matter-js';
 import Specification from './Specification';
 
-import { Bird, Wall } from '../components';
+import { Bird, Wall, Floor } from '../components';
 
 export const randomBetween = (min, max) => {
   return Math.floor(Math.random() * (max - min + 1) + min);
@@ -24,20 +24,24 @@ export const generatePipes = () => {
 function setupWorld(gameEngine) {
   const engine = Matter.Engine.create({ enableSleeping: false });
   const { world } = engine;
+  world.gravity.y = 0.0;
 
   const bird = Matter.Bodies.rectangle(
-    Specification.MAX_WIDTH / 4,
+    Specification.MAX_WIDTH / 2,
     Specification.MAX_HEIGHT / 2,
-    50,
-    50
+    Specification.BIRD_WIDTH,
+    Specification.BIRD_HEIGHT
   );
+  // bird.restitution = 20;
+
   const floor = Matter.Bodies.rectangle(
     Specification.MAX_WIDTH / 2,
     Specification.MAX_HEIGHT - 25,
-    Specification.MAX_WIDTH,
+    Specification.MAX_WIDTH + 4,
     200,
     { isStatic: true }
   );
+
   const ceiling = Matter.Bodies.rectangle(
     Specification.MAX_WIDTH / 2,
     25,
@@ -89,8 +93,13 @@ function setupWorld(gameEngine) {
   return {
     physics: { engine, world },
     bird: { body: bird, size: [50, 50], color: 'red', renderer: Bird },
-    ceiling: { body: ceiling, size: [Specification.MAX_WIDTH, 50], color: 'green', renderer: Wall },
-    floor: { body: floor, size: [Specification.MAX_WIDTH, 200], color: 'green', renderer: Wall },
+    ceiling: {
+      body: ceiling,
+      size: [Specification.MAX_WIDTH, 50],
+      color: 'green',
+      renderer: Wall,
+    },
+    floor: { body: floor, size: [Specification.MAX_WIDTH, 200], renderer: Floor },
     pipe1: {
       body: pipe1,
       size: [Specification.PIPE_WIDTH, pipe1Height],

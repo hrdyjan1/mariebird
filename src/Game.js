@@ -1,10 +1,11 @@
 import React, { useState, useRef, useMemo } from 'react';
-import { View, StatusBar, TouchableOpacity, Text } from 'react-native';
+import { View, StatusBar, TouchableOpacity, Text, Image } from 'react-native';
 import { GameEngine } from 'react-native-game-engine';
 
 import styles from '../styles';
 import { setupWorld } from './constants';
 import { Physics } from './systems';
+import Images from '../assets/images';
 
 function Game() {
   const [running, setRunning] = useState(true);
@@ -24,6 +25,7 @@ function Game() {
 
   return (
     <View style={styles.container}>
+      <Image style={styles.backgroundImage} resizeMode="stretch" source={Images.background} />
       <GameEngine
         ref={ref => {
           gameEngine.current = ref;

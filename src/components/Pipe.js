@@ -1,13 +1,11 @@
 /* eslint-disable react/no-array-index-key */
-/* eslint-disable react/forbid-prop-types */
 /* eslint-disable prefer-spread */
+/* eslint-disable react/prop-types */
 import React, { PureComponent } from 'react';
-import PropTypes from 'prop-types';
-
 import { View, Image } from 'react-native';
-import Images from '../../assets/images';
+import Images from './assets/Images';
 
-class Floor extends PureComponent {
+export default class Pipe extends PureComponent {
   render() {
     const { body } = this.props;
     const width = body.bounds.max.x - body.bounds.min.x;
@@ -15,7 +13,9 @@ class Floor extends PureComponent {
     const x = body.position.x - width / 2;
     const y = body.position.y - height / 2;
 
-    const imageIterations = Math.ceil(width / height);
+    const pipeRatio = 160 / width; // 160 is the original image size
+    const pipeHeight = 33 * pipeRatio;
+    const pipeIterations = Math.ceil(height / pipeHeight);
 
     return (
       <View
@@ -26,15 +26,15 @@ class Floor extends PureComponent {
           width,
           height,
           overflow: 'hidden',
-          flexDirection: 'row',
+          flexDirection: 'column',
         }}
       >
-        {Array.apply(null, Array(imageIterations)).map((el, idx) => {
+        {Array.apply(null, Array(pipeIterations)).map((el, idx) => {
           return (
             <Image
-              style={{ width: height, height }}
+              style={{ width, height: pipeHeight }}
               key={idx}
-              source={Images.floor}
+              source={Images.pipeCore}
               resizeMode="stretch"
             />
           );
@@ -43,13 +43,3 @@ class Floor extends PureComponent {
     );
   }
 }
-
-Floor.propTypes = {
-  body: PropTypes.object,
-};
-
-Floor.defaultProps = {
-  body: {},
-};
-
-export default Floor;
