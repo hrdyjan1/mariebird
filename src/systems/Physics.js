@@ -53,7 +53,7 @@ function addPipes(x, world, entities) {
   entities[`pipe${pipeNumber}`] = {
     body: pipe1,
     size: [Specification.PIPE_WIDTH, pipe1Height],
-    color: 'red',
+    color: 'white',
     renderer: Wall,
     scored: false,
   };
@@ -61,7 +61,7 @@ function addPipes(x, world, entities) {
   entities[`pipe${pipeNumber + 1}`] = {
     body: pipe2,
     size: [Specification.PIPE_WIDTH, pipe2Height],
-    color: 'green',
+    color: 'white',
     renderer: Wall,
     scored: false,
   };

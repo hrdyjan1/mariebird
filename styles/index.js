@@ -23,7 +23,7 @@ const styles = StyleSheet.create({
     height: Specification.MAX_HEIGHT,
   },
   score: {
-    color: 'white',
+    color: 'black',
     fontSize: 72,
     position: 'absolute',
     top: 50,
@@ -31,6 +31,7 @@ const styles = StyleSheet.create({
     textShadowColor: '#222222',
     textShadowOffset: { width: 2, height: 2 },
     textShadowRadius: 2,
+    zIndex: 10,
   },
   gameOverText: {
     color: 'white',

@@ -1,10 +1,9 @@
 /* eslint-disable no-restricted-properties */
 /* eslint-disable import/prefer-default-export */
 import Matter from 'matter-js';
-import { StatusBar } from 'react-native';
 import Specification from './Specification';
 
-import { Bird, Floor } from '../components';
+import { Floor, Bird, Ceiling } from '../components';
 
 const height = ({ body: { bounds } }) => bounds.max.y - bounds.min.y;
 const distance = ({ x: x1, y: y1 }, { x: x2, y: y2 }) =>
@@ -44,6 +43,11 @@ function setupWorld(gameEngine) {
     50
   );
 
+  // Ceiling - triangle
+  //   const vertices = [{ x: 0, y: 0 }, { x: 50, y: 100 }, { x: 100, y: 0 }];
+  //   const triangleVertices = Matter.Vertices.create(vertices);
+  //   const triangle = Matter.Bodies.fromVertices(Specification.MAX_WIDTH / 2, 300, triangleVertices);
+
   const floor = Matter.Bodies.rectangle(
     Specification.MAX_WIDTH / 2,
     Specification.MAX_WINDOW_HEIGHT - 50,
@@ -54,9 +58,9 @@ function setupWorld(gameEngine) {
 
   const ceiling = Matter.Bodies.rectangle(
     Specification.MAX_WIDTH / 2,
-    25,
+    75,
     Specification.MAX_WIDTH,
-    50,
+    150,
     {
       isStatic: true,
     }
@@ -78,7 +82,7 @@ function setupWorld(gameEngine) {
     },
     ceiling: {
       body: ceiling,
-      renderer: Floor,
+      renderer: Ceiling,
     },
     floor: { body: floor, renderer: Floor },
   };

@@ -7,7 +7,7 @@ function Mummy() {
   function play(type) {
     mummy.current.play({
       type,
-      fps: Number(1),
+      fps: Number(18),
       loop: true,
       resetAfterFinish: true,
     });
