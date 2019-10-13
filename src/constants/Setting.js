@@ -1,14 +1,20 @@
+/* eslint-disable no-restricted-properties */
 /* eslint-disable import/prefer-default-export */
 import Matter from 'matter-js';
+import { StatusBar } from 'react-native';
 import Specification from './Specification';
 
-import { Bird, Wall } from '../components';
+import { Bird, Floor } from '../components';
 
-export const randomBetween = (min, max) => {
+const height = ({ body: { bounds } }) => bounds.max.y - bounds.min.y;
+const distance = ({ x: x1, y: y1 }, { x: x2, y: y2 }) =>
+  Math.sqrt(Math.pow(x2 - x1, 2) + Math.pow(y2 - y1, 2));
+
+const randomBetween = (min, max) => {
   return Math.floor(Math.random() * (max - min + 1) + min);
 };
 
-export const generatePipes = () => {
+const generatePipes = () => {
   const topPipeHeight = randomBetween(100, Specification.MAX_HEIGHT / 2 - 100);
   const bottomPipeHeight = Specification.MAX_HEIGHT - topPipeHeight - Specification.GAP_SIZE;
 
@@ -21,9 +27,15 @@ export const generatePipes = () => {
   return sizes;
 };
 
+const base = ({ body }) => ({
+  x: body.position.x,
+  y: body.position.y + height({ body }) / 2,
+});
+
 function setupWorld(gameEngine) {
   const engine = Matter.Engine.create({ enableSleeping: false });
   const { world } = engine;
+  world.gravity.y = 0.0;
 
   const bird = Matter.Bodies.rectangle(
     Specification.MAX_WIDTH / 4,
@@ -31,13 +43,15 @@ function setupWorld(gameEngine) {
     50,
     50
   );
+
   const floor = Matter.Bodies.rectangle(
     Specification.MAX_WIDTH / 2,
-    Specification.MAX_HEIGHT - 25,
+    Specification.MAX_WINDOW_HEIGHT - 50,
     Specification.MAX_WIDTH,
-    200,
+    100,
     { isStatic: true }
   );
+
   const ceiling = Matter.Bodies.rectangle(
     Specification.MAX_WIDTH / 2,
     25,
@@ -47,75 +61,27 @@ function setupWorld(gameEngine) {
       isStatic: true,
     }
   );
-  const [pipe1Height, pipe2Height] = generatePipes();
 
-  const pipe1 = Matter.Bodies.rectangle(
-    Specification.MAX_WIDTH - Specification.PIPE_WIDTH / 2,
-    pipe1Height / 2,
-    Specification.PIPE_WIDTH,
-    pipe1Height,
-    { isStatic: true }
-  );
-  const pipe2 = Matter.Bodies.rectangle(
-    Specification.MAX_WIDTH - Specification.PIPE_WIDTH / 2,
-    Specification.MAX_HEIGHT - pipe2Height / 2,
-    Specification.PIPE_WIDTH,
-    pipe2Height,
-    { isStatic: true }
-  );
-
-  const [pipe3Height, pipe4Height] = generatePipes();
-
-  const pipe3 = Matter.Bodies.rectangle(
-    Specification.MAX_WIDTH * 2 - Specification.PIPE_WIDTH / 2,
-    pipe3Height / 2,
-    Specification.PIPE_WIDTH,
-    pipe3Height,
-    { isStatic: true }
-  );
-  const pipe4 = Matter.Bodies.rectangle(
-    Specification.MAX_WIDTH * 2 - Specification.PIPE_WIDTH / 2,
-    Specification.MAX_HEIGHT - pipe4Height / 2,
-    Specification.PIPE_WIDTH,
-    pipe4Height,
-    { isStatic: true }
-  );
-
-  Matter.World.add(world, [bird, floor, ceiling, pipe1, pipe2, pipe3, pipe4]);
+  Matter.World.add(world, [bird, floor, ceiling]);
   Matter.Events.on(engine, 'collisionStart', () => {
     gameEngine.current.dispatch({ type: 'game-over' });
   });
 
   return {
     physics: { engine, world },
-    bird: { body: bird, size: [50, 50], color: 'red', renderer: Bird },
-    ceiling: { body: ceiling, size: [Specification.MAX_WIDTH, 50], color: 'green', renderer: Wall },
-    floor: { body: floor, size: [Specification.MAX_WIDTH, 200], color: 'green', renderer: Wall },
-    pipe1: {
-      body: pipe1,
-      size: [Specification.PIPE_WIDTH, pipe1Height],
-      color: 'green',
-      renderer: Wall,
+    bird: {
+      body: bird,
+      size: [50, 50],
+      renderer: Bird,
+      score: Specification.INITIAL_SCORE,
+      color: 'yellow',
     },
-    pipe2: {
-      body: pipe2,
-      size: [Specification.PIPE_WIDTH, pipe2Height],
-      color: 'green',
-      renderer: Wall,
+    ceiling: {
+      body: ceiling,
+      renderer: Floor,
     },
-    pipe3: {
-      body: pipe3,
-      size: [Specification.PIPE_WIDTH, pipe3Height],
-      color: 'green',
-      renderer: Wall,
-    },
-    pipe4: {
-      body: pipe4,
-      size: [Specification.PIPE_WIDTH, pipe4Height],
-      color: 'green',
-      renderer: Wall,
-    },
+    floor: { body: floor, renderer: Floor },
   };
 }
 
-export { setupWorld };
+export { setupWorld, base, distance, generatePipes, randomBetween };

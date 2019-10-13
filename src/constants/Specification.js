@@ -1,10 +1,24 @@
 import { Dimensions } from 'react-native';
 
+const POINTS_TO_WIN = 0;
+// const deviceH = Dimensions.get('screen').height;
+// const windowH = Dimensions.get('window').height;
+// const currHeight = StatusBar.currentHeight;
+
+const deviceH = Dimensions.get('screen').height;
+// the value returned does not include the bottom navigation bar, I am not sure why yours does.
+const windowH = Dimensions.get('window').height;
+const bottomNavBarH = deviceH - windowH;
+
 const Constants = {
   MAX_WIDTH: Dimensions.get('screen').width,
   MAX_HEIGHT: Dimensions.get('screen').height,
-  GAP_SIZE: 200, // gap between the two parts of the pipe
+  MAX_WINDOW_HEIGHT: Dimensions.get('window').height,
+  GAP_SIZE: 400, // gap between the two parts of the pipe
   PIPE_WIDTH: 100, // width of the pipe
+  FINAL_SCORE: POINTS_TO_WIN + 1,
+  INITIAL_SCORE: 5,
+  BOTTOM_BAR: bottomNavBarH,
 };
 
 export default Constants;

@@ -2,8 +2,9 @@
 import React from 'react';
 import { View } from 'react-native';
 import PropTypes from 'prop-types';
+import Mummy from './Mummy';
 
-function Bird({ size, body, color }) {
+function Bird({ size, body }) {
   const width = size[0];
   const height = size[1];
   const x = body.position.x - width / 2;
@@ -17,22 +18,21 @@ function Bird({ size, body, color }) {
         top: y,
         width,
         height,
-        backgroundColor: color,
       }}
-    />
+    >
+      <Mummy />
+    </View>
   );
 }
 
 Bird.propTypes = {
   size: PropTypes.array,
   body: PropTypes.object,
-  color: PropTypes.string,
 };
 
 Bird.defaultProps = {
   size: [],
   body: {},
-  color: [],
 };
 
 export default Bird;
