@@ -8,6 +8,10 @@ export const styles = StyleSheet.create({
   block: {
     flex: 1,
   },
+  border: {
+    borderWidth: 1,
+    borderColor: 'red',
+  },
   row: {
     flexDirection: 'row',
   },
@@ -158,6 +162,7 @@ const Block = complexProps => {
     top,
     bottom,
     card,
+    border,
     shadow,
     color,
     space,
@@ -185,6 +190,7 @@ const Block = complexProps => {
     margin && { ...handleMargins() },
     padding && { ...handlePaddings() },
     card && styles.card,
+    border && styles.border,
     shadow && styles.shadow,
     space && { justifyContent: `space-${space}` },
     wrap && { flexWrap: 'wrap' },

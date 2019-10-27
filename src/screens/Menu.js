@@ -14,7 +14,7 @@ const scrollX = new Animated.Value(0);
 const styles = StyleSheet.create({
   stepsContainer: {
     position: 'absolute',
-    bottom: sizes.base * 2,
+    bottom: sizes.base * 3,
     right: 0,
     left: 0,
   },
@@ -83,7 +83,7 @@ export default function Menu({ navigation, illustrations }) {
   }
 
   function handleStart() {
-    navigation.navigate('Login');
+    navigation.navigate('Game');
   }
 
   function openTutorial() {

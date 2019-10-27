@@ -1,11 +1,13 @@
 import React from 'react';
 import { Image } from 'react-native';
 import { createAppContainer, createSwitchNavigator } from 'react-navigation';
-import Menu from '../screens/Menu';
+import { Menu } from '../screens';
+import Game from '../Game';
 
 const screens = createSwitchNavigator(
   {
     Menu,
+    Game,
   },
   {
     defaultNavigationOptions: {
