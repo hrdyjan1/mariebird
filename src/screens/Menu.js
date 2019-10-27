@@ -73,7 +73,7 @@ export default function Menu({ navigation, illustrations }) {
               animated
               flex={false}
               key={`step-${index}`}
-              color="gray"
+              color="primary"
               style={[styles.steps, { opacity }]}
             />
           );
@@ -98,9 +98,8 @@ export default function Menu({ navigation, illustrations }) {
     <Block>
       <Block center bottom flex={0.35}>
         <Text h1 center bold>
-          Marie
+          Marie{' '}
           <Text h1 primary>
-            {' '}
             Bird
           </Text>
         </Text>
@@ -118,9 +117,9 @@ export default function Menu({ navigation, illustrations }) {
             Start
           </Text>
         </Button>
-        <Button shadow onPress={openTutorial}>
+        <Button shadow onPress={openTutorial} style->
           <Text center semibold>
-            How to play
+            Information
           </Text>
         </Button>
       </Block>

@@ -7,5 +7,6 @@ import Ceiling from './Ceiling';
 import Block from './Block';
 import Button from './Button';
 import Text from './Text';
+import Info from './Info';
 
-export { Bird, Wall, Floor, Triangle, Ceiling, Block, Button, Text };
+export { Bird, Wall, Floor, Triangle, Ceiling, Block, Button, Text, Info };

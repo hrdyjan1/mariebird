@@ -48,7 +48,7 @@ const Tutorial = ({ isVisible, close }) => {
 
         <Block flex={0.2} padding={[sizes.base * 1.5, 0]}>
           <Button gradient onPress={close}>
-            <Text center white>
+            <Text center semibold white>
               Got it
             </Text>
           </Button>

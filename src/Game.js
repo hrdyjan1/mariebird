@@ -2,13 +2,12 @@ import React, { useState, useRef, useMemo } from 'react';
 import { Image, View, StatusBar, Text } from 'react-native';
 import PropTypes from 'prop-types';
 import { GameEngine } from 'react-native-game-engine';
-import { Entypo } from '@expo/vector-icons';
 
 import styles from '../styles';
 import { setupWorld, Specification } from './constants';
 import { Physics } from './systems';
 import Images from './components/assets/Images';
-import { Block, Text as TextB, Button } from './components';
+import { Info } from './components';
 
 function Game({ navigation }) {
   const [running, setRunning] = useState(true);
@@ -34,6 +33,10 @@ function Game({ navigation }) {
     setRunning(true);
   };
 
+  const goBack = () => {
+    navigation.navigate('Menu');
+  };
+
   return (
     <View style={styles.container}>
       <Image source={Images.background} style={styles.backgroundImage} resizeMode="stretch" />
@@ -52,36 +55,7 @@ function Game({ navigation }) {
       </GameEngine>
       {!running && (
         <View style={styles.fullScreen}>
-          {win ? (
-            <Text style={styles.gameOverText}>Win the Game</Text>
-          ) : (
-            <Block flex={0.2} row card color="white" space="between" padding={[20]} margin={[20]}>
-              <Block flex={0.5} column middle>
-                <TextB h3 style={{ paddingBottom: 8, paddingTop: -18 }}>
-                  Congratulation
-                </TextB>
-                <TextB caption semibold>
-                  You won the game
-                </TextB>
-              </Block>
-
-              <Block flex={0.2} middle>
-                <Button gradient onPress={reset}>
-                  <TextB h1 center white bold>
-                    <Entypo name="controller-play" size={20} />
-                  </TextB>
-                </Button>
-              </Block>
-
-              <Block middle flex={0.2}>
-                <Button gradient onPress={() => navigation.navigate('Menu')}>
-                  <TextB h1 white center bold>
-                    <Entypo name="home" size={20} />
-                  </TextB>
-                </Button>
-              </Block>
-            </Block>
-          )}
+          <Info goBack={goBack} reset={reset} score={score} win={win} />
         </View>
       )}
     </View>

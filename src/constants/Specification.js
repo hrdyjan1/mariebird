@@ -17,7 +17,7 @@ const Constants = {
   GAP_SIZE: 400, // gap between the two parts of the pipe
   PIPE_WIDTH: 100, // width of the pipe
   FINAL_SCORE: POINTS_TO_WIN + 1,
-  INITIAL_SCORE: 5,
+  INITIAL_SCORE: 3,
   BOTTOM_BAR: bottomNavBarH,
 };
 
