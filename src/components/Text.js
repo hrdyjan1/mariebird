@@ -8,6 +8,7 @@ import { sizes, colors, texts } from '../constants/Theme';
 const styles = StyleSheet.create({
   // default style
   text: {
+    fontFamily: 'Forte',
     fontSize: sizes.font,
     color: colors.black,
   },
@@ -16,16 +17,16 @@ const styles = StyleSheet.create({
     fontWeight: 'normal',
   },
   bold: {
-    fontWeight: 'bold',
+    fontFamily: 'Forte-bold',
   },
   semibold: {
-    fontWeight: '500',
+    fontFamily: 'Forte-bold',
   },
   medium: {
-    fontWeight: '500',
+    fontFamily: 'Forte-bold',
   },
   light: {
-    fontWeight: '200',
+    fontFamily: 'Forte',
   },
   // position
   center: { textAlign: 'center' },
@@ -46,6 +47,7 @@ const styles = StyleSheet.create({
   h2: texts.h2,
   h3: texts.h3,
   title: texts.title,
+  score: texts.score,
   body: texts.body,
   caption: texts.caption,
   small: texts.small,
@@ -57,6 +59,7 @@ const Typography = complexProps => {
     h2,
     h3,
     title,
+    score,
     body,
     caption,
     small,
@@ -97,6 +100,7 @@ const Typography = complexProps => {
     h2 && styles.h2,
     h3 && styles.h3,
     title && styles.title,
+    score && styles.score,
     body && styles.body,
     caption && styles.caption,
     small && styles.small,

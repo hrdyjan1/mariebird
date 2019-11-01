@@ -2,7 +2,7 @@ const colors = {
   accent: '#F3534A',
   primary: '#51A2D9',
   secondary: '#53C0F0',
-  tertiary: '#B9E5F3',
+  tertiary: '#FF8C3E',
   warning: '#720017',
   success: '#00743F',
   black: '#323643',
@@ -19,10 +19,11 @@ const sizes = {
   padding: 25,
 
   // font sizes
-  h1: 30,
+  h1: 54,
   h2: 24,
-  h3: 18,
+  h3: 20,
   title: 18,
+  score: 65,
   header: 16,
   body: 14,
   caption: 12,
@@ -43,6 +44,9 @@ const texts = {
   },
   title: {
     fontSize: sizes.title,
+  },
+  score: {
+    fontSize: sizes.score,
   },
   body: {
     fontSize: sizes.body,

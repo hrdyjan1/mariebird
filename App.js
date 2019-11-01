@@ -2,10 +2,11 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import decomp from 'poly-decomp';
 import { Asset } from 'expo-asset';
+import * as Font from 'expo-font';
 import { AppLoading } from 'expo';
 
 import Navigation from './src/navigation';
-import { images } from './src/constants';
+import { images, fonts } from './src/constants';
 import Block from './src/components/Block';
 
 // To be able to handle concave angles in Game object detection
@@ -16,8 +17,7 @@ export default function App({ skipLoadingScreen }) {
   const [isLoading, setIsLoading] = useState(true);
 
   async function handleResources() {
-    const cacheImages = images.map(image => Asset.fromModule(image).downloadAsync());
-    return Promise.all(cacheImages);
+    return Promise.all([Asset.loadAsync(images), Font.loadAsync(fonts)]);
   }
 
   function handleLoadingError(error) {

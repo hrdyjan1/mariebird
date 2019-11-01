@@ -23,14 +23,9 @@ const styles = StyleSheet.create({
     height: Specification.MAX_HEIGHT,
   },
   score: {
-    color: 'black',
-    fontSize: 72,
     position: 'absolute',
     top: 50,
     left: Specification.MAX_WIDTH / 2 - 24,
-    textShadowColor: '#222222',
-    textShadowOffset: { width: 2, height: 2 },
-    textShadowRadius: 2,
     zIndex: 10,
   },
   gameOverText: {

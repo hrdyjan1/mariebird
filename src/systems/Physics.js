@@ -1,7 +1,7 @@
 /* eslint-disable no-param-reassign */
 import Matter from 'matter-js';
 import Specification from '../constants/Specification';
-import { Wall, Bird } from '../components';
+import { Wall, Bird2 } from '../components';
 import { generatePipes, distance, base } from '../constants';
 
 export function addFinalBird(x, world, entities) {
@@ -21,7 +21,7 @@ export function addFinalBird(x, world, entities) {
     body: bird2,
     size: [50, 50],
     color: 'blue',
-    renderer: Bird,
+    renderer: Bird2,
   };
 }
 

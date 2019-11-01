@@ -14,14 +14,14 @@ const randomBetween = (min, max) => {
 };
 
 const generatePipes = () => {
-  const topPipeHeight = randomBetween(100, Specification.MAX_HEIGHT / 2 - 100);
+  const topPipeHeight = randomBetween(155, Specification.MAX_HEIGHT / 2 - 100);
   const bottomPipeHeight = Specification.MAX_HEIGHT - topPipeHeight - Specification.GAP_SIZE;
 
-  let sizes = [topPipeHeight, bottomPipeHeight];
+  const sizes = [topPipeHeight, bottomPipeHeight];
 
-  if (Math.random() < 0.5) {
-    sizes = sizes.reverse();
-  }
+  //   if (Math.random() < 0.5) {
+  //     sizes = sizes.reverse();
+  //   }
 
   return sizes;
 };

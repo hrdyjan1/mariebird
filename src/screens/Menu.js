@@ -3,6 +3,7 @@
 import React, { useState } from 'react';
 import { Animated, Dimensions, Image, FlatList, StyleSheet } from 'react-native';
 import PropTypes from 'prop-types';
+import Constants from 'expo-constants';
 
 import { Block, Button, Text } from '../components';
 import { sizes } from '../constants';
@@ -95,17 +96,19 @@ export default function Menu({ navigation, illustrations }) {
   }
 
   return (
-    <Block>
+    <Block style={{ paddingTop: Constants.statusBarHeight }}>
       <Block center bottom flex={0.35}>
-        <Text h1 center bold>
-          Marie{' '}
-          <Text h1 primary>
-            Bird
+        <Block row style={{ alignItems: 'flex-end', marginBottom: 10 }}>
+          <Text h1 tertiary>
+            Šuny
           </Text>
-        </Text>
-        <Text h3 gray2 style={{ marginTop: sizes.padding / 2 }}>
-          Enjoy the Game and have a fun.
-        </Text>
+          <Text h1> Bird</Text>
+        </Block>
+        <Block top>
+          <Text h3 gray2 style={{ marginTop: sizes.padding / 2 }}>
+            Enjoy the Game and have a fun.
+          </Text>
+        </Block>
       </Block>
       <Block center middle>
         {renderIllustrations()}
@@ -113,12 +116,12 @@ export default function Menu({ navigation, illustrations }) {
       </Block>
       <Block top flex={0.3} margin={[0, sizes.padding * 2]}>
         <Button gradient onPress={handleStart}>
-          <Text center semibold white>
+          <Text h3 center semibold white>
             Start
           </Text>
         </Button>
         <Button shadow onPress={openTutorial} style->
-          <Text center semibold>
+          <Text h3 center semibold>
             Information
           </Text>
         </Button>

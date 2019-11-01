@@ -14,10 +14,10 @@ const Constants = {
   MAX_WIDTH: Dimensions.get('screen').width,
   MAX_HEIGHT: Dimensions.get('screen').height,
   MAX_WINDOW_HEIGHT: Dimensions.get('window').height,
-  GAP_SIZE: 400, // gap between the two parts of the pipe
+  GAP_SIZE: 250, // gap between the two parts of the pipe
   PIPE_WIDTH: 100, // width of the pipe
   FINAL_SCORE: POINTS_TO_WIN + 1,
-  INITIAL_SCORE: 3,
+  INITIAL_SCORE: 10,
   BOTTOM_BAR: bottomNavBarH,
 };
 

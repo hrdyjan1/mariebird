@@ -36,7 +36,7 @@ const Info = ({ reset, goBack, score, win }) => {
           success={win}
           center
           semibold
-          h3
+          h2
           style={{ paddingBottom: 8, marginTop: -8 }}
         >
           {text.header}

@@ -1,5 +1,5 @@
 import React, { useState, useRef, useMemo } from 'react';
-import { Image, View, StatusBar, Text } from 'react-native';
+import { Image, View, StatusBar } from 'react-native';
 import PropTypes from 'prop-types';
 import { GameEngine } from 'react-native-game-engine';
 
@@ -7,7 +7,7 @@ import styles from '../styles';
 import { setupWorld, Specification } from './constants';
 import { Physics } from './systems';
 import Images from './components/assets/Images';
-import { Info } from './components';
+import { Info, Text } from './components';
 
 function Game({ navigation }) {
   const [running, setRunning] = useState(true);
@@ -40,7 +40,9 @@ function Game({ navigation }) {
   return (
     <View style={styles.container}>
       <Image source={Images.background} style={styles.backgroundImage} resizeMode="stretch" />
-      <Text style={styles.score}>{score}</Text>
+      <Text score bold black style={styles.score}>
+        {score}
+      </Text>
       <GameEngine
         ref={ref => {
           gameEngine.current = ref;
