@@ -18,15 +18,16 @@ const Tutorial = ({ isVisible, close }) => {
             How to play
           </Text>
           <Text caption gray height={24} style={{ marginBottom: sizes.base }}>
-            1. First rule is, the bird flies alone. Just calm down and prepare yourself for playing.
+            1. First rule is, the angel flies alone. Just calm down and prepare yourself for
+            playing.
           </Text>
           <Text caption gray height={24} style={{ marginBottom: sizes.base }}>
-            2. Feel free to start tapping the screen to handle your bird flying. Every single tap
-            means the bird will take off a little.
+            2. Feel free to start tapping the screen to handle your angel flying. Every single tap
+            means the angel will take off a little.
           </Text>
           <Text caption gray height={24} style={{ marginBottom: sizes.base }}>
-            3. Main goal of the game is to fly through 10 ice mountains and reach the other bird
-            carrying heavy nest. This way you will that help him to safe eggs from crashing down.
+            3. Main goal of the game is to fly through 10 ice mountains and reach the other angel.
+            This way you will that help him to safe eggs from crashing down.
           </Text>
 
           <Text h3 light style={{ marginTop: sizes.base, marginBottom: sizes.base / 2 }}>
@@ -36,7 +37,7 @@ const Tutorial = ({ isVisible, close }) => {
             1. Accomplishment of the game is teach other players to be patience.
           </Text>
           <Text caption gray height={24} style={{ marginBottom: sizes.base }}>
-            2. Originally the game is a gift for my girlfriend Marie. Love you.
+            2. Originally the game is a gift for my friend Šuny. Love you Bro.
           </Text>
           <Text caption gray height={24} style={{ marginBottom: sizes.base }}>
             3. This game is based on themes of Flappy bird.

@@ -3,11 +3,10 @@ import Bird from './Bird';
 import Bird2 from './Bird2';
 import Wall from './Wall';
 import Floor from './Floor';
-import Triangle from './Triangle';
 import Ceiling from './Ceiling';
 import Block from './Block';
 import Button from './Button';
 import Text from './Text';
 import Info from './Info';
 
-export { Bird, Bird2, Wall, Floor, Triangle, Ceiling, Block, Button, Text, Info };
+export { Bird, Bird2, Wall, Floor, Ceiling, Block, Button, Text, Info };

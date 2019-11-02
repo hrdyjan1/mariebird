@@ -1,45 +1,71 @@
-import React from 'react';
-import { Entypo } from '@expo/vector-icons';
+import React, { useState, useRef, useMemo } from 'react';
+import { Image, View, StatusBar } from 'react-native';
 import PropTypes from 'prop-types';
-import { Block, Text, Button } from '../components';
+import { GameEngine } from 'react-native-game-engine';
 
-const Game = () => {
+import styles from '../../styles';
+import { setupWorld, Specification, images } from '../constants';
+import { Physics } from '../systems';
+import { Info, Text } from '../components';
+
+function Game({ navigation }) {
+  const [running, setRunning] = useState(true);
+  const [score, setScore] = useState(Specification.INITIAL_SCORE);
+  const [win, setWin] = useState(false);
+  const gameEngine = useRef();
+  const entities = useMemo(() => setupWorld(gameEngine), []);
+
+  const onEvent = e => {
+    if (e.type === 'game-over') {
+      setRunning(false);
+    } else if (e.type === 'score') {
+      setScore(s => s - 1);
+    } else if (e.type === 'game-win') {
+      setWin(true);
+    }
+  };
+
+  const reset = () => {
+    gameEngine.current.swap(setupWorld(gameEngine));
+    setWin(false);
+    setScore(Specification.INITIAL_SCORE);
+    setRunning(true);
+  };
+
+  const goBack = () => {
+    navigation.navigate('Menu');
+  };
+
   return (
-    <Block flex={1} column middle color="white">
-      <Block flex={0.2} row card shadow color="white" space="between" padding={[20]} margin={[20]}>
-        <Block flex={0.5} column middle>
-          <Text h3 style={{ paddingBottom: 8, paddingTop: -8 }}>
-            Congratulation
-          </Text>
-          <Text caption semibold>
-            You won the game
-          </Text>
-        </Block>
-
-        <Block flex={0.2} middle>
-          <Button gradient onPress={undefined}>
-            <Text h1 center white bold>
-              <Entypo name="controller-play" size={20} />
-            </Text>
-          </Button>
-        </Block>
-
-        <Block middle flex={0.2}>
-          <Button gradient onPress={undefined}>
-            <Text h1 white center bold>
-              <Entypo name="home" size={20} />
-            </Text>
-          </Button>
-        </Block>
-      </Block>
-    </Block>
+    <View style={styles.container}>
+      <Image source={images.background} style={styles.backgroundImage} resizeMode="stretch" />
+      <Text score bold black style={styles.score}>
+        {score}
+      </Text>
+      <GameEngine
+        ref={ref => {
+          gameEngine.current = ref;
+        }}
+        style={styles.gameContainer}
+        systems={[Physics]}
+        running={running}
+        onEvent={onEvent}
+        entities={entities}
+      >
+        <StatusBar hidden />
+      </GameEngine>
+      {!running && (
+        <View style={styles.fullScreen}>
+          <Info goBack={goBack} reset={reset} score={score} win={win} />
+        </View>
+      )}
+    </View>
   );
-};
+}
 
 Game.propTypes = {
   navigation: PropTypes.shape({
     navigate: PropTypes.func.isRequired,
   }).isRequired,
 };
-
 export default Game;

@@ -2,7 +2,7 @@
 import React from 'react';
 import { Image } from 'react-native';
 import PropTypes from 'prop-types';
-import Images from './assets/Images';
+import { images } from '../constants/Assets';
 
 function Bird2({ size, body }) {
   const width = size[0];
@@ -20,7 +20,7 @@ function Bird2({ size, body }) {
         height,
       }}
       resizeMode="stretch"
-      source={Images.bird2}
+      source={images.bird2}
     />
   );
 }

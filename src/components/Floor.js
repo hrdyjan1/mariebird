@@ -4,7 +4,7 @@
 /* eslint-disable react/prop-types */
 import React, { PureComponent } from 'react';
 import { View, Image } from 'react-native';
-import Images from './assets/Images';
+import { images } from '../constants/Assets';
 
 export default class Floor extends PureComponent {
   render() {
@@ -34,8 +34,7 @@ export default class Floor extends PureComponent {
               style={{ width: height, height }}
               key={idx}
               resizeMode="stretch"
-              //   source={idx % 2 === 0 ? Images.floor1 : Images.floor2}
-              source={Images.floor2}
+              source={images.floor2}
             />
           );
         })}

@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "Marie Bird",
-    "slug": "marienird",
+    "name": "Šuny Bird",
+    "slug": "sunybird",
     "privacy": "public",
     "sdkVersion": "34.0.0",
     "androidStatusBar": {
@@ -15,9 +15,9 @@
     ],
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/icon.png",
+    "icon": "./assets/images/icon.png",
     "splash": {
-      "image": "./assets/splash.png",
+      "image": "./assets/images/splash.png",
       "resizeMode": "contain",
       "backgroundColor": "#fff"
     },
@@ -30,6 +30,8 @@
     "ios": {
       "supportsTablet": true
     },
-    "description": ""
+    "primaryColor": "#ffffff",
+    "githubUrl": "https://github.com/hrdyjan1/mariebird",
+    "description": "Suny Bird is similar game to Flappy bird with only 10 obstacles."
   }
 }

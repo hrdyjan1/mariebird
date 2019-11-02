@@ -6,7 +6,7 @@ import PropTypes from 'prop-types';
 import Constants from 'expo-constants';
 
 import { Block, Button, Text } from '../components';
-import { sizes } from '../constants';
+import { sizes, images } from '../constants';
 import Tutorial from './Tutorial';
 
 const { width, height } = Dimensions.get('screen');
@@ -140,8 +140,8 @@ Menu.propTypes = {
 
 Menu.defaultProps = {
   illustrations: [
-    { id: 1, source: require('../../assets/images/illustration_1.png') },
-    { id: 2, source: require('../../assets/images/illustration_2.png') },
-    { id: 3, source: require('../../assets/images/illustration_3.png') },
+    { id: 1, source: images.illustration1 },
+    { id: 2, source: images.illustration2 },
+    { id: 3, source: images.illustration3 },
   ],
 };

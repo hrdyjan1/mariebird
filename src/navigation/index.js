@@ -1,8 +1,7 @@
 import React from 'react';
 import { Image } from 'react-native';
 import { createAppContainer, createSwitchNavigator } from 'react-navigation';
-import { Menu } from '../screens';
-import Game from '../Game';
+import { Menu, Game } from '../screens';
 
 const screens = createSwitchNavigator(
   {

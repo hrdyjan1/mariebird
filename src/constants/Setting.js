@@ -17,13 +17,7 @@ const generatePipes = () => {
   const topPipeHeight = randomBetween(155, Specification.MAX_HEIGHT / 2 - 100);
   const bottomPipeHeight = Specification.MAX_HEIGHT - topPipeHeight - Specification.GAP_SIZE;
 
-  const sizes = [topPipeHeight, bottomPipeHeight];
-
-  //   if (Math.random() < 0.5) {
-  //     sizes = sizes.reverse();
-  //   }
-
-  return sizes;
+  return [topPipeHeight, bottomPipeHeight];
 };
 
 const base = ({ body }) => ({
@@ -43,11 +37,6 @@ function setupWorld(gameEngine) {
     50
   );
 
-  // Ceiling - triangle
-  //   const vertices = [{ x: 0, y: 0 }, { x: 50, y: 100 }, { x: 100, y: 0 }];
-  //   const triangleVertices = Matter.Vertices.create(vertices);
-  //   const triangle = Matter.Bodies.fromVertices(Specification.MAX_WIDTH / 2, 300, triangleVertices);
-
   const floor = Matter.Bodies.rectangle(
     Specification.MAX_WIDTH / 2,
     Specification.MAX_WINDOW_HEIGHT - 50,
@@ -61,9 +50,7 @@ function setupWorld(gameEngine) {
     75,
     Specification.MAX_WIDTH,
     150,
-    {
-      isStatic: true,
-    }
+    { isStatic: true }
   );
 
   Matter.World.add(world, [bird, floor, ceiling]);
@@ -78,7 +65,6 @@ function setupWorld(gameEngine) {
       size: [50, 50],
       renderer: Bird,
       score: Specification.INITIAL_SCORE,
-      color: 'yellow',
     },
     ceiling: {
       body: ceiling,
